@@ -35,13 +35,24 @@
         <a href="/home" style="color: white;">Powrót</a>
     </div>
     </div>
+<!-- 
+    <ng-container *ngFor="let competence of competencies | filter : searchText">
+    <div *ngIf="competence.Level > 0" class="card"  routerLink="/competence/{{competence.Id}}">
+      <h4 class="card-title">{{competence.Name | uppercase}}</h4>
+      <div class="card-body">
+        <img class="card-img-top" [src]="'assets/' +  competence.Picture" />
+        <h6 class="card-title" [ngClass]="{'competence_low': competence.Level < 3, 'competence_high': competence.Level > 3}">Poziom: {{competence.Level}}</h6>
+        <p class="card-text" *ngIf="competence.Description.trim().length > 0">Opis: {{competence.Description}}</p>
+      </div>
+    </div>
+  </ng-container> -->
 
-    <div class="d-flex justify-content-center" style="margin-top: 80px;">
+    <div class="d-flex justify-content-center" style="margin-top: 80px;" *ngFor="let competence of competencies | filter : searchText">
         <div>
         <div class="card" style="width:400px; height: 250px;">
           <div class="card-body">
-            <h5 class="card-title">Fiszka</h5>
-            <p class="card-text">słowa słowa</p>
+            <h5 class="card-title">{{competence.Name | uppercase}}</h5>
+            <p class="card-text">{{competence.Description}}</p>
           </div>
         </div>
         <div class="d-flex justify-content-center" style="margin-top: 10px;">
