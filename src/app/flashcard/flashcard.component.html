@@ -47,12 +47,12 @@
     </div>
   </ng-container> -->
 
-    <div class="d-flex justify-content-center" style="margin-top: 80px;" *ngFor="let competence of competencies | filter : searchText">
+    <div class="d-flex justify-content-center" style="margin-top: 80px;" *ngFor="let flashcard of flashcards | filter : searchText">
         <div>
         <div class="card" style="width:400px; height: 250px;">
           <div class="card-body">
-            <h5 class="card-title">{{competence.Name | uppercase}}</h5>
-            <p class="card-text">{{competence.Description}}</p>
+            <h5 class="card-title">{{flashcard.title | uppercase}}</h5>
+            <p class="card-text">{{flashcard.description}}</p>
           </div>
         </div>
         <div class="d-flex justify-content-center" style="margin-top: 10px;">
