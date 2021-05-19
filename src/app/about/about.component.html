@@ -1,3 +1,146 @@
-<p>about works!</p>
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<button routerLink="/flashcard">Wróć</button>
+    <style>
+        :root {
+  --jumbotron-padding-y: 3rem;
+}
+
+.jumbotron {
+  padding-top: var(--jumbotron-padding-y);
+  padding-bottom: var(--jumbotron-padding-y);
+  margin-bottom: 0;
+  background-color: #fff;
+}
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: calc(var(--jumbotron-padding-y) * 2);
+    padding-bottom: calc(var(--jumbotron-padding-y) * 2);
+  }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+footer {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+footer p {
+  margin-bottom: .25rem;
+}
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+    </style>
+
+</head>
+
+<body>
+
+<!-- przycisk powrotu do home -->
+<div style="position: absolute; background-color: black; width: 120px; height: 30px; line-height: 30px; text-align: center; top: 90px;">
+    <div class="container">
+    <a href="/home" style="color: white;">Powrót</a>
+</div>
+</div>
+
+
+<main role="main">
+
+    <section class="jumbotron text-center mb-4 mt-4">
+      <div class="container">
+        <h1 class="jumbotron-heading">Dlaczego GotIT?</h1>
+        <p class="lead text-muted">Fiszki to najlepszy sposób aby szybko przyswoić sobie słownictwo<br>Nie wierzysz? Sprawdź sam!</p>
+        <hr />
+      </div>
+    </section>
+    <div class="album py-5 bg-light">
+    <div class="container">
+        <h3 class="jumbotron-heading">Dlaczego GotIT?</h3>
+        <div class="row">
+            <div class="col-sm-6">
+              <div class="card mt-4">
+                <div class="card-body">
+                  <h5 class="card-title">"GotIT to sens mojego życia, nie wyobrażam sobie mojej codzienności bez niej!"</h5>
+                  <p class="card-text">Aleksandra z Wrocławia</p>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card mt-4">
+                <div class="card-body">
+                  <h5 class="card-title">"Strona na eleganckości, polecam i z fartem"</h5>
+                  <p class="card-text">Marcin z Krakowa</p>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card mt-4">
+                  <div class="card-body">
+                    <h5 class="card-title">"Teraz angielski mam w małym palcu"</h5>
+                    <p class="card-text">Jan z Gdyni</p>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card mt-4">
+                  <div class="card-body">
+                    <h5 class="card-title">"Angielski w przystępnej formie. Moge uczyć się w domu lub w podróży. Serdecznie polecam!"</h5>
+                    <p class="card-text">Ania z Kielc</p>
+                    
+                  </div>
+                </div>
+              </div>
+          </div>
+    </div>
+</div>
+<div class="container marketing">
+
+
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Fiszki <span class="text-muted">Angielski dla każdego!</span></h2>
+        <p class="lead">Dzięki fiszkom szybko i łatwo nauczysz się słownictwa, gdzie i kiedy chcesz !</p>
+      </div>
+      <div class="col-md-5">
+        <div class="card box-shadow" style="width:300px;">
+            <div class="card-body">
+              <h5 class="card-title">Cat (kat)</h5>
+              <p class="card-text">Kot</p>
+            </div>
+          </div>
+      </div>
+    </div>
+    <hr class="featurette-divider">
+</div>
+
+
+
+    
+
+  </main>
+
+
+</body>

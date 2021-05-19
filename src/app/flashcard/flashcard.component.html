@@ -1,5 +1,59 @@
-<p>flashcard works!</p>
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<button routerLink="/about">O nas</button>
+    <style>
+    html {
+    position: relative;
+          min-height: 100%;
+        }
+        body {
+          margin-bottom: 60px; /* Margin bottom by footer height */
+        }
+        .footer {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 60px; /* Set the fixed height of the footer here */
+          line-height: 60px; /* Vertically center the text there */
+          text-align: center;
+          background-color: #f5f5f5;
+        }
+ </style>
 
-<button routerLink="/home">Wróc</button>
+</head>
+
+<body>
+
+    <div style="position: absolute; background-color: black; width: 120px; height: 30px; line-height: 30px; text-align: center; top: 90px;">
+        <div class="container">
+        <a href="/home" style="color: white;">Powrót</a>
+    </div>
+    </div>
+
+    <div class="d-flex justify-content-center" style="margin-top: 80px;">
+        <div>
+        <div class="card" style="width:400px; height: 250px;">
+          <div class="card-body">
+            <h5 class="card-title">Fiszka</h5>
+            <p class="card-text">słowa słowa</p>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center" style="margin-top: 10px;">
+            <button type="button" class="btn btn-success" style="margin-right: 30px; width:150px;">Zapamiętane</button>
+            <button type="button" class="btn btn-danger" style="width: 150px;">Na później</button>
+        </div>
+      </div>
+    </div>
+
+<footer class="footer">
+    <div class="container">
+      <a href="/about">O nas</a>
+    </div>
+    </footer>
+</body>
