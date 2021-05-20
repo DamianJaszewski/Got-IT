@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Competence } from '../Competence';
 import { CompetenciesLoadService } from '../competenciesload.service'
@@ -7,23 +8,49 @@ import { CompetenciesLoadService } from '../competenciesload.service'
   templateUrl: './flashcard.component.html',
   styleUrls: ['./flashcard.component.css']
 })
-export class FlashcardComponent{
+export class FlashcardComponent implements OnInit{
 
-searchText: string = "yes";
 
-flashcards =[{
-  id:1,
-  title: "Obiektowość",
-  description: "Jak wygląda intrukcja IF?",
-  answer:"if (warunek){polecenia1}[else {polecenia2}]",
-  remembered:"no"
-},{
-  id:2,
-  title: "Obiektowość",
-  description: "Jak wygląda konstruktor?",
-  answer:"constructor([arguments]) { ... }",
-  remembered:"yes"
-}]
+  url = 'https://restcountries.eu/rest/v2/region/europe';
+  url2 = 'http://flashcardsdj.azurewebsites.net/api/Flashcard/getlist';
+  countries: any;
+  countrie: string | undefined;
+  
+  constructor(private http: HttpClient){}
+  
+  public getRegions(){
+    this.countries = this.http.get(this.url)
+    return this.countries;
+  }
+  ngOnInit(): void {
+  }
+
+// flashcards =[{
+//   id:1,
+//   title: "Obiektowość",
+//   description: "Jak wygląda intrukcja IF?",
+//   answer:"if (warunek){polecenia1}[else {polecenia2}]",
+//   remembered:"no"
+// },{
+//   id:2,
+//   title: "Obiektowość",
+//   description: "Jak wygląda konstruktor?",
+//   answer:"constructor([arguments]) { ... }",
+//   remembered:"yes",
+// },{
+//   id:3,
+//   title: "Obiektowość",
+//   description: "Jak wygląda intrukcja IF?",
+//   answer:"if (warunek){polecenia1}[else {polecenia2}]",
+//   remembered:"no"
+// },{
+//   id:4,
+//   title: "Obiektowość",
+//   description: "Jak wygląda konstruktor?",
+//   answer:"constructor([arguments]) { ... }",
+//   remembered:"yes"
+//   }
+// ]
 
   // searchText: string = "";
   // competencies: Competence[] = [];

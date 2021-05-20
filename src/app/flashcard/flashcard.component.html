@@ -47,7 +47,15 @@
     </div>
   </ng-container> -->
 
-    <div class="d-flex justify-content-center" style="margin-top: 80px;" *ngFor="let flashcard of flashcards | filter : searchText">
+   
+  <button (click)="getRegions()">Get Regions</button>
+  <div *ngFor="let region of countries | async">
+    {{region.Category | json}}
+    {{region.Title | json}}
+  </div>
+
+<!-- 
+    <div class="d-flex justify-content-center" style="margin-top: 80px;" *ngFor="let flashcard of flashcards">
         <div>
         <div class="card" style="width:400px; height: 250px;">
           <div class="card-body">
@@ -60,7 +68,7 @@
             <button type="button" class="btn btn-danger" style="width: 150px;">Na później</button>
         </div>
       </div>
-    </div>
+    </div> -->
 
 <footer class="footer">
     <div class="container">
