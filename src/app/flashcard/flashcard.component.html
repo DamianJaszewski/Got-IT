@@ -6,6 +6,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
 
     <style>
     html {
@@ -26,53 +28,53 @@
         }
  </style>
 
+
 </head>
 
 <body>
+
+  
 
     <div style="position: absolute; background-color: black; width: 120px; height: 30px; line-height: 30px; text-align: center; top: 90px;">
         <div class="container">
         <a href="/home" style="color: white;">Powrót</a>
     </div>
     </div>
-<!-- 
-    <ng-container *ngFor="let competence of competencies | filter : searchText">
-    <div *ngIf="competence.Level > 0" class="card"  routerLink="/competence/{{competence.Id}}">
-      <h4 class="card-title">{{competence.Name | uppercase}}</h4>
-      <div class="card-body">
-        <img class="card-img-top" [src]="'assets/' +  competence.Picture" />
-        <h6 class="card-title" [ngClass]="{'competence_low': competence.Level < 3, 'competence_high': competence.Level > 3}">Poziom: {{competence.Level}}</h6>
-        <p class="card-text" *ngIf="competence.Description.trim().length > 0">Opis: {{competence.Description}}</p>
-      </div>
-    </div>
-  </ng-container> -->
 
-   
-  <button (click)="getRegions()">Get Regions</button>
-  <div *ngFor="let region of countries | async">
-    {{region.Category | json}}
-    {{region.Title | json}}
+    <div *ngFor="let flashcard of flashcards">
+    {{flashcard.Title}}
   </div>
+    
 
-<!-- 
-    <div class="d-flex justify-content-center" style="margin-top: 80px;" *ngFor="let flashcard of flashcards">
+    <div class="d-flex justify-content-center" style="margin-top: 80px;">
         <div>
         <div class="card" style="width:400px; height: 250px;">
-          <div class="card-body">
-            <h5 class="card-title">{{flashcard.title | uppercase}}</h5>
-            <p class="card-text">{{flashcard.description}}</p>
+          <div class="card-body" style="visibility: visible;" id="card">
+            <p id="id">{{Flashcards[0].id}}</p>
+            <h5 id="en" class="card-title">{{Flashcards[0].en}}</h5>
+            
+            
+            <button (click)="showAnswer()" class="btn btn-primary" >Pokaż odpowiedź</button>
+
+            <p class="card-text" style="visibility:hidden;" id="answer">{{Flashcards[0].pl}}</p>
+
           </div>
         </div>
-        <div class="d-flex justify-content-center" style="margin-top: 10px;">
-            <button type="button" class="btn btn-success" style="margin-right: 30px; width:150px;">Zapamiętane</button>
-            <button type="button" class="btn btn-danger" style="width: 150px;">Na później</button>
+        <div class="d-flex justify-content-center" style="margin-top: 10px;" id="buttons">
+            <button (click) ="remember()" type="button" class="btn btn-success" style="margin-right: 30px; width:150px;">Zapamiętane</button>
+            <button (click) ="nextQuestion()" type="button" class="btn btn-danger" style="width: 150px;">Na później</button>
+            
         </div>
+        <div class="justify-content-center" style="text-align: center; visibility: hidden;" id="win">
+        <hr />
+            <p>Gratulacje! materiał opanowany!</p>
+          </div>
       </div>
-    </div> -->
-
+    </div>
 <footer class="footer">
     <div class="container">
       <a href="/about">O nas</a>
     </div>
     </footer>
+
 </body>

@@ -1,86 +1,157 @@
+import { Flashcard } from './../Flashcard';
 import { HttpClient } from '@angular/common/http';
+import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 import { Component, OnInit } from '@angular/core';
-import { Competence } from '../Competence';
-import { CompetenciesLoadService } from '../competenciesload.service'
 
 @Component({
   selector: 'app-flashcard',
   templateUrl: './flashcard.component.html',
   styleUrls: ['./flashcard.component.css']
 })
+
 export class FlashcardComponent implements OnInit{
 
-
-  url = 'https://restcountries.eu/rest/v2/region/europe';
-  url2 = 'http://flashcardsdj.azurewebsites.net/api/Flashcard/getlist';
-  countries: any;
-  countrie: string | undefined;
+  url = 'http://flashcardsdj.azurewebsites.net/api/Flashcard/GetList';
+  public flashcards: any=[];
   
-  constructor(private http: HttpClient){}
-  
-  public getRegions(){
-    this.countries = this.http.get(this.url)
-    return this.countries;
+  constructor(private http: HttpClient){
+    
   }
-  ngOnInit(): void {
+  ngOnInit(){
+    this.flashcards = this.http.get(this.url)
+      .subscribe(data=>{
+        this.flashcards=data;
+      })
+    return this.flashcards;
+  }
+  getRandomInt(min:number, max:number) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
   }
 
-// flashcards =[{
-//   id:1,
-//   title: "Obiektowość",
-//   description: "Jak wygląda intrukcja IF?",
-//   answer:"if (warunek){polecenia1}[else {polecenia2}]",
-//   remembered:"no"
-// },{
-//   id:2,
-//   title: "Obiektowość",
-//   description: "Jak wygląda konstruktor?",
-//   answer:"constructor([arguments]) { ... }",
-//   remembered:"yes",
-// },{
-//   id:3,
-//   title: "Obiektowość",
-//   description: "Jak wygląda intrukcja IF?",
-//   answer:"if (warunek){polecenia1}[else {polecenia2}]",
-//   remembered:"no"
-// },{
-//   id:4,
-//   title: "Obiektowość",
-//   description: "Jak wygląda konstruktor?",
-//   answer:"constructor([arguments]) { ... }",
-//   remembered:"yes"
-//   }
-// ]
+  remember(){
+    this.pick();
+  }
 
-  // searchText: string = "";
-  // competencies: Competence[] = [];
-  
-  // constructor(private cls: CompetenciesLoadService) {
+  showAnswer(){
+    this.answer();
+  }
 
+  nextQuestion(){
+    this.later();
+  }
+
+  x='1';
+  counter = parseInt(this.x);
+
+  Flashcards=[
+    {id:1, en:'Cat',pl:'Kot',remembered:'false'},
+    {id:2, en:'Dog',pl:'Pies',remembered:'false'},
+    {id:3, en:'Bird',pl:'Ptak',remembered:'false'},
+    {id:4, en:'Tiger',pl:'Tygrys',remembered:'false'},
+    {id:5, en:'Bear',pl:'Niedźwiedź',remembered:'false'},
+    {id:6, en:'Crocodile',pl:'Krokodyl',remembered:'false'},
+    {id:7, en:'Giraffe',pl:'Żyrafa',remembered:'false'},]
+
+  pick(){
+    //schowaj odpowiedź
+    var answer = <HTMLInputElement>document.getElementById("answer");
+    answer.style.visibility = "hidden";
+
+  // czytaj jaki element jest wyświetlany
+  var enText = <HTMLInputElement>document.getElementById("en");
+  var en = enText.innerText;
+  var idText = <HTMLInputElement>document.getElementById("id");
+  var id = idText.innerText;
+  var answerText = <HTMLInputElement>document.getElementById("answer");
+
+  //nadaj parametr remebered:true;
+  var idNum = parseInt(id);
+  this.Flashcards[idNum-1].remembered='true';
+  console.log(this.Flashcards[idNum-1].remembered);
+  console.log(this.Flashcards);
+  //zaktualizuj stronę o nowe słowa
+
+  //losuj element tablicy z remembered:'false'
+  var random;
+
+  if (this.counter < 7){
+  do{
+    random = this.getRandomInt(0,7);
+  }while( (this.Flashcards[random].remembered=="true"));
+
+  console.log(random + "- wylosowana liczba");
+
+  var Flashcardid = this.Flashcards[random].id;
+  var id = Flashcardid.toString();
+  idText.innerText=id;
+  enText.innerText = this.Flashcards[random].en;
+  answerText.innerText= this.Flashcards[random].pl;
+
+  this.counter++;
+  console.log(this.counter + "- licznik");
+  }
+  else{
+    var card = <HTMLInputElement>document.getElementById("card");
+    card.style.visibility = "hidden";
+    var win = <HTMLInputElement>document.getElementById("win");
+    win.style.visibility = "visible";
+    var buttons = <HTMLInputElement>document.getElementById("buttons");
+    buttons.style.visibility = "hidden";
+  }
+  //var en = <HTMLInputElement>document.getElementById("en");
+  //console.log(en);
+  //var element = Flashcards[getRandomInt(0,3)];
+  //do
+  //if(element.remembered == 'false'){
+  //en.innerText=element.en;
+  //element.id;
+  //element.remembered='true';
+  //console.log(element.id,element.remembered);
+  //  }  else {
+  //   var element = Flashcards[getRandomInt(0,3)];
   // }
+  // while(element.remembered == 'false')
+  }
 
-  // ngOnInit() {
-  //   let self = this; 
-  //   self.cls.getCompetencies().then(function (result) {
-  //     //alert(JSON.stringify(result));
-  //     self.competencies = result as Competence[];
-  //   });
-  //   this.competencies = [
-  //    { Id: 1, Name: "Bootstrap", Level: 4, Picture: "bootstrap.svg", Description: "Wersja 3" },
-  //    { Id: 2, Name: "AngularJS", Level: 3, Picture: "angularjs.png", Description: "" },
-  //    { Id: 3, Name: "Angular", Level: 4, Picture: "angular.png", Description: "" },
-  //    { Id: 4, Name: "Ionic", Level: 4, Picture: "ionic.png", Description: "Wersja 2" },
-  //    { Id: 5, Name: "PhoneGap", Level: 1, Picture: "phonegap.png", Description: "Tylko absolutne podstawy" },
-  //    { Id: 6, Name: "ReactJS", Level: 0, Picture: "react.png", Description: "Tylko absolutne podstawy" },
-  //    { Id: 7, Name: "Xamarin", Level: 2, Picture: "xamarin.png", Description: "Bez API dla IOS" },
-  //    { Id: 8, Name: "HTML5", Level: 5, Picture: "html5.png", Description: "Bez WebSockets i Database API" },
-  //    { Id: 9, Name: "CSS3", Level: 4, Picture: "css3.png", Description: "" },
-  //    { Id: 10, Name: "WebAPI", Level: 5, Picture: "webapi.png", Description: "" }
-  //   ];
-  // }
+  later(){
+  //schowaj odpowiedź
+  var answer = <HTMLInputElement>document.getElementById("answer");
+  answer.style.visibility = "hidden";
 
-  // searchTextChange(text: string) {
-  //   alert(text);
-  // }
+  // czytaj jaki element jest wyświetlany
+  var enText = <HTMLInputElement>document.getElementById("en");
+  var en = enText.innerText;
+  var idText = <HTMLInputElement>document.getElementById("id");
+  var id = idText.innerText;
+  var answerText = <HTMLInputElement>document.getElementById("answer");
+
+  //zaktualizuj stronę o nowe słowa
+
+  //losuj element tablicy z remembered:'false'
+  var random;
+
+  do{
+  random = this.getRandomInt(0,7);
+  }while( (this.Flashcards[random].remembered=="true"));
+
+  console.log(random + "- wylosowana liczba");
+
+  var Flashcardid = this.Flashcards[random].id;
+  var id = Flashcardid.toString();
+  idText.innerText=id;
+  enText.innerText = this.Flashcards[random].en;
+  answerText.innerText= this.Flashcards[random].pl;
+  }
+
+  answer(){
+    var answer = <HTMLInputElement>document.getElementById("answer");
+    console.log(answer);
+    answer.style.visibility = "visible";
+  }
 
 }
+
+
+
