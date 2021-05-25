@@ -12,9 +12,7 @@ export class FlashcardComponent implements OnInit{
 
   url = 'http://flashcardsdj.azurewebsites.net/api/Flashcard/GetList';
 
-  public FlashcardsAngular: any=[];
-
-
+  FlashcardsAngular: any=[];
   
   constructor(private http: HttpClient){
   }
