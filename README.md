@@ -11,7 +11,7 @@
 * [Kontakt](#kontakt)
 ## Informacje ogólne
 Aplikacja jest przeznaczona dla osób chcących poszerzyć wiedzę z języka angielskiego, pojęć z zakresu IT w przyszłości zostanie rozbudowana o możliwość dodawania i edycji fiszek przez użytkownika.
-##Uruchamianie
+## Uruchamianie
 Uruchom aplikację za pomocą 'ng serve', przejdź pod adres `http://localhost:4200/` w swojej przeglądarce.
 ## Dokumentacja
 ![Logo aplikacji](./img/flashcard.png)
