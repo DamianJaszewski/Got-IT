@@ -1,4 +1,3 @@
-import { Flashcard } from './../Flashcard';
 import { HttpClient } from '@angular/common/http';
 import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 import { Component, OnInit } from '@angular/core';
@@ -12,18 +11,22 @@ import { Component, OnInit } from '@angular/core';
 export class FlashcardComponent implements OnInit{
 
   url = 'http://flashcardsdj.azurewebsites.net/api/Flashcard/GetList';
-  public flashcards: any=[];
+
+  public FlashcardsAngular: any=[];
+
+
   
   constructor(private http: HttpClient){
-    
   }
+
   ngOnInit(){
-    this.flashcards = this.http.get(this.url)
+    this.FlashcardsAngular = this.http.get(this.url)
       .subscribe(data=>{
-        this.flashcards=data;
+        this.FlashcardsAngular=data;
       })
-    return this.flashcards;
+    return this.FlashcardsAngular;
   }
+
   getRandomInt(min:number, max:number) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -45,49 +48,48 @@ export class FlashcardComponent implements OnInit{
   x='1';
   counter = parseInt(this.x);
 
-  Flashcards=[
-    {id:1, en:'Cat',pl:'Kot',remembered:'false'},
-    {id:2, en:'Dog',pl:'Pies',remembered:'false'},
-    {id:3, en:'Bird',pl:'Ptak',remembered:'false'},
-    {id:4, en:'Tiger',pl:'Tygrys',remembered:'false'},
-    {id:5, en:'Bear',pl:'Niedźwiedź',remembered:'false'},
-    {id:6, en:'Crocodile',pl:'Krokodyl',remembered:'false'},
-    {id:7, en:'Giraffe',pl:'Żyrafa',remembered:'false'},]
 
   pick(){
-    //schowaj odpowiedź
-    var answer = <HTMLInputElement>document.getElementById("answer");
-    answer.style.visibility = "hidden";
+    console.log(this.FlashcardsAngular);
+    
+    
+    
+  //schowaj odpowiedź
+  var answer = <HTMLInputElement>document.getElementById("answer");
+  answer.style.visibility = "hidden";
 
   // czytaj jaki element jest wyświetlany
-  var enText = <HTMLInputElement>document.getElementById("en");
-  var en = enText.innerText;
+  var questionText = <HTMLInputElement>document.getElementById("question");
+  var question = questionText.innerText;
   var idText = <HTMLInputElement>document.getElementById("id");
   var id = idText.innerText;
   var answerText = <HTMLInputElement>document.getElementById("answer");
+  var category = <HTMLInputElement>document.getElementById("category");
 
-  //nadaj parametr remebered:true;
+
+  //nadaj parametr remembered:yes;
   var idNum = parseInt(id);
-  this.Flashcards[idNum-1].remembered='true';
-  console.log(this.Flashcards[idNum-1].remembered);
-  console.log(this.Flashcards);
+  this.FlashcardsAngular[idNum-1].Remembered='yes';
+  console.log(this.FlashcardsAngular[idNum-1].Remembered);
+  console.log(this.FlashcardsAngular);
   //zaktualizuj stronę o nowe słowa
 
   //losuj element tablicy z remembered:'false'
   var random;
 
-  if (this.counter < 7){
+  if (this.counter < this.FlashcardsAngular.length){
   do{
-    random = this.getRandomInt(0,7);
-  }while( (this.Flashcards[random].remembered=="true"));
+    random = this.getRandomInt(0,this.FlashcardsAngular.length);
+  }while( (this.FlashcardsAngular[random].Remembered=="yes"));
 
   console.log(random + "- wylosowana liczba");
 
-  var Flashcardid = this.Flashcards[random].id;
-  var id = Flashcardid.toString();
+  var Flashcardid = this.FlashcardsAngular[random].Id;
+  id = Flashcardid.toString();
   idText.innerText=id;
-  enText.innerText = this.Flashcards[random].en;
-  answerText.innerText= this.Flashcards[random].pl;
+  questionText.innerText = this.FlashcardsAngular[random].Question;
+  answerText.innerText= this.FlashcardsAngular[random].Answer;
+  category.innerText = this.FlashcardsAngular[random].Category;
 
   this.counter++;
   console.log(this.counter + "- licznik");
@@ -100,7 +102,80 @@ export class FlashcardComponent implements OnInit{
     var buttons = <HTMLInputElement>document.getElementById("buttons");
     buttons.style.visibility = "hidden";
   }
-  //var en = <HTMLInputElement>document.getElementById("en");
+
+  }
+
+  later(){
+  //schowaj odpowiedź
+  var answer = <HTMLInputElement>document.getElementById("answer");
+  answer.style.visibility = "hidden";
+
+  // czytaj jaki element jest wyświetlany
+  var questionText = <HTMLInputElement>document.getElementById("question");
+  var question = questionText.innerText;
+  var idText = <HTMLInputElement>document.getElementById("id");
+  var id = idText.innerText;
+  var answerText = <HTMLInputElement>document.getElementById("answer");
+  var category = <HTMLInputElement>document.getElementById("category");
+
+  
+
+  //zaktualizuj stronę o nowe słowa
+
+  //losuj element tablicy z remembered:'false'
+  var random;
+
+  do{
+  random = this.getRandomInt(0,this.FlashcardsAngular.length);
+  }while( (this.FlashcardsAngular[random].Remembered=="yes"));
+
+  console.log(random + "- wylosowana liczba");
+
+  var Flashcardid = this.FlashcardsAngular[random].Id;
+  id = Flashcardid.toString();
+  idText.innerText=id;
+  questionText.innerText = this.FlashcardsAngular[random].Question;
+  answerText.innerText= this.FlashcardsAngular[random].Answer;
+  category.innerText = this.FlashcardsAngular[random].Category;
+
+  }
+
+  answer(){
+  var answer = <HTMLInputElement>document.getElementById("answer");
+  console.log(answer);
+  answer.style.visibility = "visible";
+  }
+  
+}
+
+//   FlashcardsAngular = [
+//     {
+//       Id: 32,
+//       Category: "Angular",
+//       Question: "Cykl zycia komponentu",
+//       Answer: "W jakich sytuacjach wpinac sie w które hooks, co umieszczac w ngOnInit, a co w konstruktorze",
+//       Remembered: "no"
+//     },
+//     {
+//       Id: 33,
+//       Category: "JavaStricpt",
+//       Question: "Cykl zycia komponentu",
+//       Answer: "W jakich sytuacjach wpinac sie w które hooks, co umieszczac w ngOnInit, a co w konstruktorze",
+//       Remembered: "no"
+//     }
+//  ]
+
+  //Flashcards=[
+  //{id:1,category:"animal",en:'Cat',pl:'Kot',remembered:'false'},
+  //{id:2,category:"animal", en:'Dog',pl:'Pies',remembered:'false'},
+  //{id:3,category:"animal", en:'Bird',pl:'Ptak',remembered:'false'},
+  //{id:4,category:"animal", en:'Tiger',pl:'Tygrys',remembered:'false'},
+  //{id:5,category:"animal", en:'Bear',pl:'Niedźwiedź',remembered:'false'},
+  //{id:6,category:"animal", en:'Crocodile',pl:'Krokodyl',remembered:'false'},
+  //{id:7,category:"animal", en:'Giraffe',pl:'Żyrafa',remembered:'false'},
+  //{id:8,category:"animal", en:'Lizard',pl:'Jaszczurka',remembered:'false'}]
+
+    //var en = <HTMLInputElement>document.getElementById("en");
   //console.log(en);
   //var element = Flashcards[getRandomInt(0,3)];
   //do
@@ -113,45 +188,3 @@ export class FlashcardComponent implements OnInit{
   //   var element = Flashcards[getRandomInt(0,3)];
   // }
   // while(element.remembered == 'false')
-  }
-
-  later(){
-  //schowaj odpowiedź
-  var answer = <HTMLInputElement>document.getElementById("answer");
-  answer.style.visibility = "hidden";
-
-  // czytaj jaki element jest wyświetlany
-  var enText = <HTMLInputElement>document.getElementById("en");
-  var en = enText.innerText;
-  var idText = <HTMLInputElement>document.getElementById("id");
-  var id = idText.innerText;
-  var answerText = <HTMLInputElement>document.getElementById("answer");
-
-  //zaktualizuj stronę o nowe słowa
-
-  //losuj element tablicy z remembered:'false'
-  var random;
-
-  do{
-  random = this.getRandomInt(0,7);
-  }while( (this.Flashcards[random].remembered=="true"));
-
-  console.log(random + "- wylosowana liczba");
-
-  var Flashcardid = this.Flashcards[random].id;
-  var id = Flashcardid.toString();
-  idText.innerText=id;
-  enText.innerText = this.Flashcards[random].en;
-  answerText.innerText= this.Flashcards[random].pl;
-  }
-
-  answer(){
-    var answer = <HTMLInputElement>document.getElementById("answer");
-    console.log(answer);
-    answer.style.visibility = "visible";
-  }
-
-}
-
-
-
