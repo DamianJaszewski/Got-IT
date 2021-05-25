@@ -2,7 +2,7 @@
 > Aplikacja do nauki z fiszkami. Stworzona za pomocą frameworka Angular. Aplikacja pobiera informacje z backendu Web Api C# z użyciem bazy danych sql i chmury Azure. 
 ## Spis treści
 * [Informacje ogólne](#Informacje-ogólne)
-* [Uruchamianie] (#Uruchamianie)
+* [Uruchamianie](#uruchamianie)
 * [Dokumentacja](#dokumentacja)
 * [Technologia](#Technologie)
 * [Przykład kodu](#przykład-kodu)
