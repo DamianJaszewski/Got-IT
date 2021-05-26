@@ -14,8 +14,8 @@ Aplikacja jest przeznaczona dla osób chcących poszerzyć wiedzę z języka ang
 ## Uruchamianie
 Uruchom aplikację za pomocą 'ng serve', przejdź pod adres `http://localhost:4200/` w swojej przeglądarce.
 ## Dokumentacja
-![Logo aplikacji](./img/flashcard.png)
-![Ekran z pogodą](./img/menu.png)
+![flashcard](./img/flashCard.png)
+![menu](./img/menu.png)
 ## Technologie
 * Angular 12.0.0.
 ## Przykład kodu
