@@ -40,7 +40,7 @@ body {
         <div class="card-body">
           <h5 class="card-title">Temat 1</h5>
           <p class="card-text">cośtam</p>
-          <a href="/flashcard" class="btn btn-primary">fiszki</a>
+          <a [routerLink]="['/flashcard']" [state]="{name:'animals'}" class="btn btn-primary">fiszki</a>
         </div>
       </div>
     </div>

@@ -12,12 +12,17 @@ export class FlashcardComponent implements OnInit{
 
   url = 'http://flashcardsdj.azurewebsites.net/api/Flashcard/GetList';
 
+  message:any;
+
   FlashcardsAngular: any=[];
   
   constructor(private http: HttpClient){
   }
 
   ngOnInit(){
+    console.log(history.state)
+    this.message = history.state;
+    
     this.FlashcardsAngular = this.http.get(this.url)
       .subscribe(data=>{
         this.FlashcardsAngular=data;
